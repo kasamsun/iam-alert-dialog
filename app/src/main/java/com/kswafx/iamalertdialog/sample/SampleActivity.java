@@ -106,7 +106,7 @@ public class SampleActivity extends Activity implements View.OnClickListener {
                 new IamAlertDialog(this, IamAlertDialog.CUSTOM_IMAGE_TYPE)
                         .setTitleText("Sweet!")
                         .setContentText("Here's a custom image.")
-                        .setCustomImage(R.drawable.custom_img)
+                        .setCustomImage(R.drawable.social)
                         .show();
                 break;
             case R.id.progress_dialog:
