@@ -16,7 +16,7 @@ Android library, enhanced version of SweetAlertDialog (Fork from https://github.
 ## Usage
 Basic message：
 
-![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/01-basic.jpg "basic")
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/01-basic.png "basic")
 
 ```
     new IamAlertDialog(this)
@@ -26,7 +26,9 @@ Basic message：
 ```
 
 Message with title：
-![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/02-title.jpg "title")
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/02-title.png "title")
+
 ```
     new IamAlertDialog(this)
             .setTitleText("Title")
@@ -35,6 +37,9 @@ Message with title：
 ```
 
 Error message：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/03-error.png "error")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.ERROR_TYPE)
             .setTitleText("Oops...")
@@ -43,6 +48,9 @@ Error message：
 ```
 
 Success message：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/04-success.png "success")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.SUCCESS_TYPE)
             .setTitleText("Good job!")
@@ -51,6 +59,9 @@ Success message：
 ```
 
 Warning message with listener：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/05-warning.png "warning")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.WARNING_TYPE)
             .setTitleText("Are you sure?")
@@ -68,6 +79,9 @@ Warning message with listener：
 ```
 
 Message with a custom icon：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/06-custom-icon.png "custom icon")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.CUSTOM_IMAGE_TYPE)
             .setTitleText("Sweet!")
@@ -77,6 +91,9 @@ Message with a custom icon：
 ```
 
 Custom confirm/cancel/neutral button：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/07-neutral.png "neutral button")
+
 ```
                 new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
                         .setTitleText("Title")
@@ -92,6 +109,9 @@ Custom confirm/cancel/neutral button：
 ```
 
 Custom button icon：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/08-button-icon.png "button icon")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.WARNING_TYPE)
             .setTitleText("Confirm to delete")
@@ -115,6 +135,9 @@ Custom button icon：
 ```
 
 Vertical button：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/09-vertical-button.png "vertical button")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
             .setTitleText("Title")
@@ -131,6 +154,9 @@ Vertical button：
 ```
 
 Custom button color：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/10-color-button.png "color button")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
             .setTitleText("Custom button color")
@@ -146,6 +172,9 @@ Custom button color：
 ```
 
 Single selection list：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/11-single-selection.png "single selection")
+
 ```
     List<DataItem> selectionItems = new ArrayList<>();
     selectionItems.add(new DataItem("1", "Cash"));
@@ -165,6 +194,9 @@ Single selection list：
 ```
 
 Custom single selection list：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/12-custom-selection.png "custom selection")
+
 ```
     List<DataItem> selectionItems = new ArrayList<>();
     selectionItems.add(new DataItem(R.drawable.ic_baseline_favorite_24, 0, "1", "Atari 2600"));
@@ -188,6 +220,9 @@ Custom single selection list：
 ```
 
 Custom single selection button：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/13-custom-button-selection.png "custom button selection")
+
 ```
     List<DataItem> selectionItems = new ArrayList<>();
     selectionItems.clear();
@@ -211,6 +246,9 @@ Custom single selection button：
 ```
 
 Number input dialog：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/14-input-number.png "input number")
+
 ```
     new IamAlertDialog(this, IamAlertDialog.TEXT_INPUT_TYPE)
             .setContentText("Enter number (10 digit integer)")
