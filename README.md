@@ -15,6 +15,9 @@ Android library, enhanced version of SweetAlertDialog (Fork from https://github.
 
 ## Usage
 Basic message：
+
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/01-basic.jpg "basic")
+
 ```
     new IamAlertDialog(this)
             .setContentText("Here's a message")
@@ -23,6 +26,7 @@ Basic message：
 ```
 
 Message with title：
+![alt text](https://raw.githubusercontent.com/kasamsun/iam-alert-dialog/master/images/02-title.jpg "title")
 ```
     new IamAlertDialog(this)
             .setTitleText("Title")
