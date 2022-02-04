@@ -3,188 +3,219 @@ I am Alert Dialog
 Android library, enhanced version of SweetAlertDialog (Fork from https://github.com/F0RIS/sweet-alert-dialog)
 
 ## Setup
-
-**Gradle**
 ```
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+        implementation 'com.github.kasamsun:iam-alert-dialog:1.0.0'
     }
 ```
+
 ## Usage
-
-show material progress
-
-    SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-    pDialog.setTitleText("Loading");
-    pDialog.setCancelable(false);
-    pDialog.show();
-
-![image](https://github.com/pedant/sweet-alert-dialog/raw/master/play_progress.gif)
-
-You can customize progress bar dynamically with materialish-progress methods via **SweetAlertDialog.getProgressHelper()**:
-- resetCount()
-- isSpinning()
-- spin()
-- stopSpinning()
-- getProgress()
-- setProgress(float progress)
-- setInstantProgress(float progress)
-- getCircleRadius()
-- setCircleRadius(int circleRadius)
-- getBarWidth()
-- setBarWidth(int barWidth)
-- getBarColor()
-- setBarColor(int barColor)
-- getRimWidth()
-- setRimWidth(int rimWidth)
-- getRimColor()
-- setRimColor(int rimColor)
-- getSpinSpeed()
-- setSpinSpeed(float spinSpeed)
-
-thanks to the project [materialish-progress](https://github.com/pnikosis/materialish-progress) and [@croccio](https://github.com/croccio) participation.
-
-more usages about progress, please see the sample.
-
-A basic message：
-
-    new SweetAlertDialog(this)
-        .setTitleText("Here's a message!")
-        .show();
-
-A title with a text under：
-
-    new SweetAlertDialog(this)
-        .setTitleText("Here's a message!")
-        .setContentText("It's pretty, isn't it?")
-        .show();
-
-A error message：
-
-    new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
-        .setTitleText("Oops...")
-        .setContentText("Something went wrong!")
-        .show();
-
-A warning message：
-
-    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-        .setTitleText("Are you sure?")
-        .setContentText("Won't be able to recover this file!")
-        .setConfirmText("Yes,delete it!")
-        .show();
-
-A success message：
-
-    new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-        .setTitleText("Good job!")
-        .setContentText("You clicked the button!")
-        .show();
-
-A message with a custom icon：
-
-    new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-        .setTitleText("Sweet!")
-        .setContentText("Here's a custom image.")
-        .setCustomImage(R.drawable.custom_img)
-        .show();
-
-A message with a custom view：
-
-    final EditText editText = new EditText(this);
-    new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
-            .setTitleText("Custom view")
-            .setConfirmText("Ok")
-            .setCustomView(editText)
+Basic message：
+```
+    new IamAlertDialog(this)
+            .setContentText("Here's a message")
             .show();
 
+```
 
-Different ways to bind the listener to button：
-
-    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-        .setTitleText("Are you sure?")
-        .setContentText("Won't be able to recover this file!")
-        .setConfirmText("Yes,delete it!")
-        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sDialog) {
-                sDialog.dismissWithAnimation();
-            }
-        })
-        .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sDialog) {
-                sDialog.dismissWithAnimation();
-            }
-        })
-        .show();
-
-
-Disable button
-
-    final SweetAlertDialog disabledBtnDialog = new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+Message with title：
+```
+    new IamAlertDialog(this)
             .setTitleText("Title")
-            .setContentText("Disabled button dialog")
-            .setConfirmText("Confirm")
-            .setCancelText("Cancel")
+            .setContentText("It's pretty, isn't it?")
+            .show();
+```
 
-    disabledBtnDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-        @Override
-        public void onShow(DialogInterface dialog) {
-            disabledBtnDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM).setEnabled(false);
-        }
-    });
-    disabledBtnDialog.show();
+Error message：
+```
+    new IamAlertDialog(this, IamAlertDialog.ERROR_TYPE)
+            .setTitleText("Oops...")
+            .setContentText("Something went wrong!")
+            .show();
+```
 
+Success message：
+```
+    new IamAlertDialog(this, IamAlertDialog.SUCCESS_TYPE)
+            .setTitleText("Good job!")
+            .setContentText("You clicked the button!")
+            .show();
+```
 
-**Change** the dialog style upon confirming：
+Warning message with listener：
+```
+    new IamAlertDialog(this, IamAlertDialog.WARNING_TYPE)
+            .setTitleText("Are you sure?")
+            .setContentText("Won't be able to recover this file!")
+            .setConfirmText("Later")
+            .setCancelButton("Delete", IamAlertDialog -> {
+                // reuse previous dialog instance
+                IamAlertDialog.setTitleText("Deleted!")
+                        .setContentText("Your imaginary file has been deleted!")
+                        .setConfirmClickListener(null)
+                        .setCancelClickListener(null)
+                        .changeAlertType(IamAlertDialog.SUCCESS_TYPE);
+            })
+            .show();
+```
 
-    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-        .setTitleText("Are you sure?")
-        .setContentText("Won't be able to recover this file!")
-        .setConfirmText("Yes,delete it!")
-        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sDialog) {
-                sDialog
-                    .setTitleText("Deleted!")
-                    .setContentText("Your imaginary file has been deleted!")
-                    .setConfirmText("OK")
-                    .setConfirmClickListener(null)
-                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-            }
-        })
-        .show();
+Message with a custom icon：
+```
+    new IamAlertDialog(this, IamAlertDialog.CUSTOM_IMAGE_TYPE)
+            .setTitleText("Sweet!")
+            .setContentText("Here's a custom image.")
+            .setCustomImage(R.drawable.custom_img)
+            .show();
+```
 
-[more android tech shares: pedant.cn](http://www.pedant.cn)
+Custom confirm/cancel/neutral button：
+```
+                new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+                        .setTitleText("Title")
+                        .setContentText("Three buttons dialog")
+                        .setConfirmText("Ok")
+                        .setCancelText("Stop")
+                        .setNeutralText("Later")
+                        .setConfirmClickListener(IamAlertDialog::dismissWithAnimation)
+                        .setNeutralClickListener(IamAlertDialog::dismissWithAnimation)
+                        .setCancelClickListener(IamAlertDialog::dismissWithAnimation)
+                        .show();
 
-## License
+```
 
-    The MIT License (MIT)
+Custom button icon：
+```
+    new IamAlertDialog(this, IamAlertDialog.WARNING_TYPE)
+            .setTitleText("Confirm to delete")
+            .setContentText("It Won't be able to recover this file!")
+            .setConfirmText("Cancel")
+            .setConfirmButtonIcon(R.drawable.ic_baseline_close_24)
+            .setCancelButtonIcon(R.drawable.ic_baseline_delete_forever_24)
+            .setCancelButton("Delete", new IamAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(IamAlertDialog IamAlertDialog) {
+                    // reuse previous dialog instance
+                    IamAlertDialog.setTitleText("Deleted!")
+                            .setContentText("Your imaginary file has been deleted!")
+                            .setConfirmClickListener(null)
+                            .setCancelClickListener(null)
+                            .changeAlertType(IamAlertDialog.SUCCESS_TYPE);
+                }
+            })
+            .show();
 
-    Copyright (c) 2014 Pedant(http://pedant.cn)
+```
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+Vertical button：
+```
+    new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+            .setTitleText("Title")
+            .setContentText("Vertical button dialog")
+            .setConfirmText("Vertical #1")
+            .setCancelText("Vertical #2")
+            .setNeutralText("Vertical #3")
+            .setConfirmClickListener(IamAlertDialog::dismissWithAnimation)
+            .setNeutralClickListener(IamAlertDialog::dismissWithAnimation)
+            .setCancelClickListener(IamAlertDialog::dismissWithAnimation)
+            .setButtonOrientation(LinearLayout.VERTICAL)
+            .show();
 
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
+```
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+Custom button color：
+```
+    new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+            .setTitleText("Custom button color")
+            .setButtonOrientation(LinearLayout.VERTICAL)
+            .setCancelButton("brown darken", null)
+            .setCancelButtonBackgroundColor(R.color.brown_darken_3)
+            .setNeutralButton("brown", null)
+            .setNeutralButtonBackgroundColor(R.color.brown)
+            .setConfirmButton("brown lighten", null)
+            .setConfirmButtonBackgroundColor(R.color.brown_lighten_2)
+            .show();
 
+```
 
+Single selection list：
+```
+    List<DataItem> selectionItems = new ArrayList<>();
+    selectionItems.add(new DataItem("1", "Cash"));
+    selectionItems.add(new DataItem("2", "Credit Card"));
+    selectionItems.add(new DataItem("3", "Bank Transfer"));
+    selectionItems.add(new DataItem("4", "Paypal"));
+    new IamAlertDialog(this, IamAlertDialog.TEXT_SELECTION_TYPE)
+            .setContentText("Select payment method")
+            .setListItems(selectionItems, (dialog, position, data) -> {
+                dialog.dismissWithAnimation();
+                new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+                        .setContentText("You select " + data.getDescription())
+                        .show();
+            })
+            .show();
+
+```
+
+Custom single selection list：
+```
+    List<DataItem> selectionItems = new ArrayList<>();
+    selectionItems.add(new DataItem(R.drawable.ic_baseline_favorite_24, 0, "1", "Atari 2600"));
+    selectionItems.add(new DataItem(R.drawable.ic_baseline_favorite_24, 0, "2", "Sega Megadrive"));
+    selectionItems.add(new DataItem(R.drawable.ic_baseline_favorite_24, 0, "3", "NEC PC Engine"));
+    selectionItems.add(new DataItem(R.drawable.ic_baseline_favorite_24, 0, "4", "Sony Playstation"));
+    selectionItems.add(new DataItem(R.drawable.ic_close_24dp, 0, "0", "Not interested"));
+    selectionItems.add(new DataItem(0, 0, "9", "I like every console"));
+    new IamAlertDialog(this, IamAlertDialog.TEXT_SELECTION_TYPE)
+            .setCustomImage(R.drawable.game_controller)
+            .setContentText("Select console you love")
+            .setListItems(selectionItems, (dialog, position, data) -> {
+                selectedConsole = position;
+                dialog.dismissWithAnimation();
+                new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+                        .setContentText("You select " + data.getDescription())
+                        .show();
+            }, true, selectedConsole)
+            .show();
+
+```
+
+Custom single selection button：
+```
+    List<DataItem> selectionItems = new ArrayList<>();
+    selectionItems.clear();
+    selectionItems.add(new DataItem(R.drawable.ic_social_facebook, R.color.blue_darken_3, "1", "Facebook"));
+    selectionItems.add(new DataItem(R.drawable.ic_social_github, R.color.green_darken_3, "2", "Github"));
+    selectionItems.add(new DataItem(R.drawable.ic_social_twitter, R.color.light_blue, "3", "Twitter"));
+    selectionItems.add(new DataItem(R.drawable.ic_social_instagram, R.color.purple_lighten_1, "4", "Instagram"));
+    selectionItems.add(new DataItem(R.drawable.ic_social_pinterest, R.color.red_darken_4, "5", "Pinterest"));
+    new IamAlertDialog(this, IamAlertDialog.BUTTON_SELECTION_TYPE)
+            .setCustomImage(R.drawable.social)
+            .setContentText("Choose your favorite social")
+            .setListItems(selectionItems, (dialog, position, data) -> {
+                selectedConsole = position;
+                dialog.dismissWithAnimation();
+                new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+                        .setContentText("You select " + data.getDescription())
+                        .show();
+            })
+            .show();
+
+```
+
+Number input dialog：
+```
+    new IamAlertDialog(this, IamAlertDialog.TEXT_INPUT_TYPE)
+            .setContentText("Enter number (10 digit integer)")
+            .setTextInputListener("100", "Edit number", (dialog, value) -> {
+                dialog.dismissWithAnimation();
+                new IamAlertDialog(this, IamAlertDialog.NORMAL_TYPE)
+                        .setContentText("You have entered " + value)
+                        .show();
+            })
+            .show();
+
+```
