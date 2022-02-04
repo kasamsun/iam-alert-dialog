@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+version = VERSION_NAME
+group = GROUP
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion '30.0.3'
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 31
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            proguardFile 'proguard-android.txt'
+            minifyEnabled true
+            shrinkResources true
+        }
+    }
+}
+
+dependencies {
+    implementation project(':iamalertdialog')
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+}

@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+version = VERSION_NAME
+group = GROUP
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion '30.0.3'
+
+    defaultConfig {
+        minSdkVersion 23
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'com.pnikosis:materialish-progress:1.7'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+}
+
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.kswafx'
+                artifactId = 'iamalertdialog'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+
+//apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+/* upload command:
+    gradlew -p library clean build uploadArchives --info
+ */
